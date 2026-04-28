@@ -2,34 +2,50 @@
 
 namespace Database\Seeders;
 
-use App\Models\Categories;
 use Illuminate\Database\Seeder;
-// use App\Models\Categories;
-use App\Models\Expert;
+use App\Models\User;
+use App\Models\ExpertProfile;
+use App\Models\Categories;
 
 class ExpertSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Buat Kategori dulu (Pondasi)
-        $it = Categories::create(['name' => 'IT & Coding']);
-        $hukum = Categories::create(['name' => 'Hukum & Legal']);
+        // Create 6 categories
+        Categories::factory()
+            ->count(6)
+            ->create();
 
-        // 2. Buat Data Ahli (Barangnya)
-        Expert::create([
-            'category_id' => $it->id,
-            'name' => 'Siska Amelia, S.Kom',
-            'hourly_rate' => 150000,
-            'rating_avg' => 4.8,
-            'image_url' => 'https://ui-avatars.com/api/?name=Siska+Amelia'
-        ]);
+        // Create 10 users with 'expert' role
+        $users = User::factory()
+            ->count(10)
+            ->state(['roles' => 'expert'])
+            ->create();
 
-        Expert::create([
-            'category_id' => $hukum->id,
-            'name' => 'Dr. Andi Hermawan',
-            'hourly_rate' => 250000,
-            'rating_avg' => 4.9,
-            'image_url' => 'https://ui-avatars.com/api/?name=Andi+Hermawan'
-        ]);
+        // Create 10 experts with relationships to users and categories
+        $categories = Categories::all();
+        
+        foreach ($users as $user) {
+            ExpertProfile::create([
+                'user_id' => $user->id,
+                'category_id' => $categories->random()->id,
+                'title' => fake()->randomElement([
+                    'Senior Developer',
+                    'Full Stack Engineer',
+                    'Frontend Specialist',
+                    'Backend Expert',
+                    'DevOps Consultant',
+                    'Mobile Developer',
+                    'Data Scientist',
+                    'UI/UX Designer',
+                    'Business Analyst',
+                    'Financial Advisor'
+                ]),
+                'bio' => fake()->paragraph(),
+                'hourly_rate' => fake()->numberBetween(100000, 500000),
+                'location' => fake()->city(),
+                'experience_years' => fake()->numberBetween(1, 15),
+            ]);
+        }
     }
 }

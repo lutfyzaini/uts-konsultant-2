@@ -13,7 +13,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center gap-2">
                     <div class="bg-indigo-600 text-white font-bold w-8 h-8 flex items-center justify-center rounded">E</div>
-                    <span class="text-xl font-extrabold text-gray-900 tracking-tight">Expert<span class="text-indigo-600">-Ease</span></span>
+                    <span class="text-xl font-extrabold text-gray-900 tracking-tight">E<span class="text-indigo-600">-Konsultant</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="{{ route('home') }}" class="text-gray-600 hover:text-indigo-600 text-sm font-medium">Beranda</a>

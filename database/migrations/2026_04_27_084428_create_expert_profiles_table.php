@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('expert_profiles', function (Blueprint $table) {
@@ -17,15 +14,13 @@ return new class extends Migration
             $table->string('title');
             $table->string('bio');
             $table->integer('category_id');
+            $table->integer('hourly_rate'); 
             $table->string('location');
             $table->integer('experience_years');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('expert_profiles');
