@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('availbilities', function (Blueprint $table) {
+        Schema::create('expert_skills', function (Blueprint $table) {
             $table->id();
             $table->integer('expert_id');
-            $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->boolean('is_active')->default(true);
+            $table->integer('skill_id');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('availbilities');
+        Schema::dropIfExists('expert_skills');
     }
 };

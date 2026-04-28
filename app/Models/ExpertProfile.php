@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Expert extends Model
+class ExpertProfile extends Model
 {
     //
 }

@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('consultations', function (Blueprint $table) {
             $table->id();
             $table->integer('booking_id');
-            $table->string('invoice');
-            $table->decimal('amount', 8, 2);
-            $table->enum('payment_method', ['credit_card', 'bank_transfer', 'e_wallet']);
-            $table->enum('status', ['pending', 'completed'])->default('pending');
-            $table->dateTime('payment_date')->nullable();
+            $table->enum('status', ['chat', 'video_call']);
+            $table->text('summary');
+            $table->enum('status_cons', ['active', 'pending']);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('consultations');
     }
 };

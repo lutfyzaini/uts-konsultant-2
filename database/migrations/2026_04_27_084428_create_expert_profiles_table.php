@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('availbilities', function (Blueprint $table) {
+        Schema::create('expert_profiles', function (Blueprint $table) {
             $table->id();
-            $table->integer('expert_id');
-            $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->boolean('is_active')->default(true);
+            $table->integer('user_id');
+            $table->string('title');
+            $table->string('bio');
+            $table->integer('category_id');
+            $table->string('location');
+            $table->integer('experience_years');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('availbilities');
+        Schema::dropIfExists('expert_profiles');
     }
 };
